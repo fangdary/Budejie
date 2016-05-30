@@ -1,0 +1,50 @@
+//
+//  BuDeJie.pch
+//  BuDeJie
+//
+//  Created by Fangweiyi on 5/26/16.
+//  Copyright © 2016 EvilGoose. All rights reserved.
+//
+
+#ifndef BuDeJie_pch
+#define BuDeJie_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+    //屏幕bounds
+#define kScreenBounds     [UIScreen mainScreen].bounds
+
+    //屏幕的宽 ,高
+#define kScreenWidth     kScreenBounds.size.width
+#define kScreenHeight       kScreenBounds.size.height
+
+    //RGB颜色
+#define kRGBColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
+    //随机色
+#define kRandomColor kRGBColor(arc4random_uniform(255), arc4random_uniform(255),arc4random_uniform(255), 1.0)
+
+    //自定义提示宏
+#define BDJ_KEY_DEFINE(Obj,Key) ((void)(Obj.Key), @(#Key))
+
+    //自定义Log,能打印行号
+#ifdef DEBUG
+
+#define NSLog(FORMAT, ...) fprintf(stderr,"< %s Line %d > \t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+
+#define NSLog(FORMAT, ...) nil
+
+#endif
+
+    //导入UIView frame中各值的点语法
+#import "UIView+Extension.h"
+
+    //导入统一的Http请求管理者
+#import "BDJHttpSessionManager.h"
+
+    //当前用户是否登录
+#define isLogined NO
+
+
+#endif /* BuDeJie_pch */
